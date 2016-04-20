@@ -14,14 +14,6 @@ Dork::Dork(string in_name, string in_level, int in_energy, int in_steps) {
     steps = in_steps;
 }
 
-void Dork::display_init() {
-    
-}
-
-void display_close() {
-    
-}
-
 void clearDisplay(int num) {
     
 }
