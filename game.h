@@ -13,14 +13,18 @@ class Dork {
 private:
     string name;
     string level;
-    int energy;
+    
+     int energy;
     int steps;
     
 public:
     Dork();
     Dork(string in_name, string in_level, int in_energy, int in_steps);
     
-    void Display(std::ifstream& inFile);
+    void display_init();
+    void display_close();
+    void clearDisplay(int num);
+    
 };
 
 #endif
