@@ -20,9 +20,7 @@ private:
 public:
     Dork();
     Dork(string in_name, string in_level, int in_energy, int in_steps);
-    
-    void display_init();
-    void display_close();
+
     void clearDisplay(int num);
     
 };
