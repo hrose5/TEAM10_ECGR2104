@@ -15,5 +15,13 @@ Dork::Dork(string in_name, string in_level, int in_energy, int in_steps) {
 }
 
 void Dork::display_init() {
-    printw("%n", "banner.txt");
+    
+}
+
+void display_close() {
+    
+}
+
+void clearDisplay(int num) {
+    
 }
