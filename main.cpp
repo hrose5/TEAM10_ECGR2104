@@ -20,7 +20,7 @@
 int main(int argc, char *argv[]) {
     display_init();
     intro_display();
-printw("banner.txt")    
+printw("banner.txt");    
     /*User function calls
      */
     getch();
