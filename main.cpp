@@ -14,6 +14,16 @@
  * must be properly acknowledge.
  * /
  * *******************************************************************/
+class Dork{
+	private:
+	int energy;
+	int steps;
+	string name;
+	string map;
+	public:
+	
+	
+}
 #include"dork.h"
 
 int main(int argc, char *argv[])
