@@ -2,7 +2,6 @@
 #include <ctime>
 #include <cstdlib>
 #include <cmath>
-#include <vector>
 using namespace std;
 // feel free to change any variables you like like i know numcard is slightly confusing
 class Rummy {
@@ -21,7 +20,7 @@ int getPlayer() {return numplayer;}
 void getCards(int numcard, int numplayer);
 void getNumCards(int numplayer, int numberofcards);
 void setPlayers(int innumplayer) {numplayer = innumplayer;}
-void setNumCards(int innumcards) {numberofcards = innumcards;}
+void setNumberOfCards(int innumcards) {numberofcards = innumcards;}
 void setSuit(string insuit){suit = insuit;}
 void CreateSuit(int numcard, string suit); 
 void CreateNumberCard(int numcard, string cardset);
@@ -246,7 +245,6 @@ void CreateCardSet(string cardset, string suit, string cardname);
 		cout << "Error too less or too many players"<<endl;}
 
 int main() {
-	vector<int> firstvec;
 	Rummy player1rummy;
 	cout << "How many players?" <<endl;
 	player1rummy.getPlayer();
