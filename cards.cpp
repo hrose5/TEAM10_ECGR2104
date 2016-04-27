@@ -10,24 +10,18 @@ int numplayer; //number of players
 int numberofcards; // the number the cards each play er gets
 int numcard; // the card number from 1-50
 string suit; // the suit like heart, spade, clover,etc...
-string cardset; 
-string cardname;
-
 public:
 //Rummy();
 //~Rummy();
-int getPlayer() {return numplayer;}
-void getCards(int numcard, int numplayer);
-void getNumCards(int numplayer, int numberofcards);
-void setPlayers(int innumplayer) {numplayer = innumplayer;}
+int getPlayer() {return numplayer;} // gets number of players
+void getCards(int numcard, int numplayer); // uses the number of players to determine which card from 1-52 is drawn
+void getNumCards(int numplayer, int numberofcards); // just determines how many cards each player gets
+void setPlayers(int innumplayer) {numplayer = innumplayer;} 
 void setNumberOfCards(int innumcards) {numberofcards = innumcards;}
 void setSuit(string insuit){suit = insuit;}
-void CreateSuit(int numcard, string suit); 
-void CreateNumberCard(int numcard, string cardset);
-void CreateCardSet(string cardset, string suit, string cardname);
+void CreateSuit(int numcard, string suit); // determines the suit
+void CreateNumberCard(int numcard, string cardset); // determines the actual card lik 1 ,2,jack, king, etc....
 };
-//	Rummy:: Rummy(int nn) : numplayerz(nn){}
-	
 	void Rummy:: CreateNumberCard(int numcard, string cardset){
 		switch(numcard) {
 		case 1:
@@ -216,34 +210,12 @@ void CreateCardSet(string cardset, string suit, string cardname);
 			}
 			}
 
-	void Rummy::getCards(int numcard,int numplayer){
+	void Rummy::getCards(int numcard,int numberofcards){
 		int i = 0;
 		srand(0);
-
-		if (numplayer == 2){
-		for(i=0; i< 10; ++i){
+		for(i=0; i<numberofcards; ++i){
 		numcard = rand()%52 + 1;
-		cout << numcard << " ";
- 		
-		}
-		}
-		else if ((numplayer == 3) || (numplayer == 4)){
-		for(i=0; i<7; ++i){
-		numcard = rand()%52 + 1;
-		cout << numcard << " ";
-		}
-
-		}
-		else if ((numplayer == 5) || (numplayer == 6)){
-		for(i=0; i <6 ; ++i){
-		numcard = rand()%52 + 1;
-		cout << numcard << " ";
-		
-		}
-		}
-		else
-		cout << "Error too less or too many players"<<endl;}
-
+		cout << numcard << " " << endl;
 int main() {
 	Rummy player1rummy;
 	cout << "How many players?" <<endl;
