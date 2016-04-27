@@ -4,6 +4,8 @@
 #include <cmath>
 using namespace std;
 // feel free to change any variables you like like i know numcard is slightly confusing
+
+
 class Rummy {
 private:
 int numplayer; //number of players
@@ -13,6 +15,19 @@ string suit; // the suit like heart, spade, clover,etc...
 public:
 //Rummy();
 //~Rummy();
+//shuffle function
+//delete card function
+// cpu function
+//storage function
+//hand function
+//leftover card function
+// discard function
+//meld function (holds melds possibilities)
+// meld pile (melds already utilized)
+// order function (who plays first)
+
+
+
 int getPlayer() {return numplayer;} // gets number of players
 void getCards(int numcard, int numplayer); // uses the number of players to determine which card from 1-52 is drawn
 void getNumCards(int numplayer, int numberofcards); // just determines how many cards each player gets
