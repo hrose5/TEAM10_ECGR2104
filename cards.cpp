@@ -9,7 +9,6 @@ class Rummy {
 private:
 int numplayer;
 int numcards;
-int numsuit;
 int card;
 string suit;
 string cardset;
@@ -20,13 +19,11 @@ public:
 //~Rummy();
 int getPlayer() {return numplayer;}
 void getCards(int numcard, int numplayer);
-void getSuit(int numcards, int numsuit);
 void getNumCards(int numplayer, int numcards);
 void setPlayers(int innumplayer) {numplayer = innumplayer;}
 void setNumCards(int innumcards) {numcards = innumcards;}
-void setNumSuit(int innumsuit){numsuit = innumsuit;} 
 void setSuit(string insuit){suit = insuit;}
-void CreateSuit(int numsuit, string suit); 
+void CreateSuit(int numcard, string suit); 
 void CreateNumberCard(int numcard, string cardset);
 void CreateCardSet(string cardset, string suit, string cardname);
 };
@@ -75,20 +72,11 @@ void CreateCardSet(string cardset, string suit, string cardname);
 		break;
 }
 }
-	void Rummy:: CreateSuit(int numsuit, string suit){
-		switch(numsuit) {
-		case 1:
+	void Rummy:: CreateSuit(int numcard, string suit){
 		suit = "♦";					
-		break;
-		case 2:
 		suit = "♠";
-		break;
-		case 3:
-		suit = "❤";
-		break;
-		case 4:
+		suit = "❤"
 		suit = "☘";	
-		break;
 }
 }
 
@@ -108,35 +96,28 @@ void CreateCardSet(string cardset, string suit, string cardname);
 			}
 			}
 
-	void Rummy:: getSuit(int numcards, int numsuit){
-		int j;
-		for(j=0; j<numcards; ++j){
-			numsuit = rand()%4 +1;
-			cout << numsuit <<endl;
-		}
-		}
-	void Rummy::getCards(int numcard,int numplayer){
+	void Rummy::getCards(int card,int numplayer){
 		int i = 0;
 		srand(0);
 
 		if (numplayer == 2){
 		for(i=0; i< 10; ++i){
-		numcard = rand()%13 + 1;
-		cout << numcard << " ";
+		numcard = rand()%50 + 1;
+		cout << card << " ";
  		
 		}
 		}
 		else if ((numplayer == 3) || (numplayer == 4)){
 		for(i=0; i<7; ++i){
-		numcard = rand()%13 + 1;
-		cout << numcard << " ";
+		numcard = rand()%50 + 1;
+		cout << card << " ";
 		}
 
 		}
 		else if ((numplayer == 5) || (numplayer == 6)){
 		for(i=0; i <6 ; ++i){
-		numcard = rand()%13 + 1;
-		cout << numcard << " ";
+		numcard = rand()%50 + 1;
+		cout << card << " ";
 		
 		}
 		}
