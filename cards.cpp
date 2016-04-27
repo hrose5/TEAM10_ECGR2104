@@ -4,11 +4,11 @@
 #include <cmath>
 #include <vector>
 using namespace std;
-
+// feel free to change any variables you like like i know numcard is slightly confusing
 class Rummy {
 private:
 int numplayer; //number of players
-int numcards; // the number the cards each play er gets
+int numberofcards; // the number the cards each play er gets
 int numcard; // the card number from 1-50
 string suit; // the suit like heart, spade, clover,etc...
 string cardset; 
@@ -19,9 +19,9 @@ public:
 //~Rummy();
 int getPlayer() {return numplayer;}
 void getCards(int numcard, int numplayer);
-void getNumCards(int numplayer, int numcards);
+void getNumCards(int numplayer, int numberofcards);
 void setPlayers(int innumplayer) {numplayer = innumplayer;}
-void setNumCards(int innumcards) {numcards = innumcards;}
+void setNumCards(int innumcards) {numberofcards = innumcards;}
 void setSuit(string insuit){suit = insuit;}
 void CreateSuit(int numcard, string suit); 
 void CreateNumberCard(int numcard, string cardset);
@@ -70,37 +70,154 @@ void CreateCardSet(string cardset, string suit, string cardname);
 		case 13:
 		cardset = "King";
 		break;
+		case 14:
+		cardset = 1;
+		break;
+		case 15:
+		cardset = 2;
+		break;
+		case 16:
+		cardset = 3;
+		break;
+		case 17:
+		cardset = 4;
+		break;
+		case 18:
+		cardset = 5;
+		break;
+		case 19:
+		cardset = 6;
+		break;
+		case 20:
+		cardset = 7;
+		break;
+		case 21:
+		cardset = 8;
+		break;
+		case 22:
+		cardset = 9;
+		break;
+		case 23:
+		cardset = 10;
+		break;
+		case 24:
+		cardset = "Jack";
+		break;
+		case 25:
+		cardset = "Queen";
+		break;
+		case 26:
+		cardset = "King";
+		break;
+		case 27:
+		cardset = 1;
+		break;
+		case 28:
+		cardset = 2;
+		break;
+		case 29:
+		cardset = 3;
+		break;
+		case 30:
+		cardset = 4;
+		break;
+		case 31:
+		cardset = 5;
+		break;
+		case 32:
+		cardset = 6;
+		break;
+		case 33:
+		cardset = 7;
+		break;
+		case 34:
+		cardset = 8;
+		break;
+		case 35:
+		cardset = 9;
+		break;
+		case 36:
+		cardset = 10;
+		break;
+		case 37:
+		cardset = "Jack";
+		break;
+		case 38:
+		cardset = "Queen";
+		break;
+		case 39:
+		cardset = "King";
+		break;	
+		case 40:
+		cardset = 1;
+		break;
+		case 41:
+		cardset = 2;
+		break;
+		case 42:
+		cardset = 3;
+		break;
+		case 43:
+		cardset = 4;
+		break;
+		case 44:
+		cardset = 5;
+		break;
+		case 45:
+		cardset = 6;
+		break;
+		case 46:
+		cardset = 7;
+		break;
+		case 47:
+		cardset = 8;
+		break;
+		case 48:
+		cardset = 9;
+		break;
+		case 49:
+		cardset = 10;
+		break;
+		case 50:
+		cardset = "Jack";
+		break;
+		case 51:
+		cardset = "Queen";
+		break;
+		case 52:
+		cardset = "King";
+		break;
 }
 }
 	void Rummy:: CreateSuit(int numcard, string suit){
-		if (numcard < 13){
+		if (numcard <= 13){
 		suit = "♦";	}
-		else if (numcard < 26){
+		else if (numcard <= 26){
 		suit = "♠";}
-		else if (numcard <39){
+		else if (numcard <= 39){
 		suit = "❤"}
 		else
 		suit = "☘";	
 }
 }
 
-	void Rummy:: getNumCards(int numplayer, int numcards){
+	void Rummy:: getNumCards(int numplayer, int numberofcards){
 		if (numplayer == 2){
-			numcards = 10;}
+			numberofcards = 10;}
 		else if (numplayer == 3) {
-			numcards = 7;}
+			numberofcards = 7;}
 		else if (numplayer == 4){
-			numcards = 7;}
+			numberofcards = 7;}
 		else if (numplayer == 5){
-			numcards = 6;}
+			numberofcards = 6;}
 		else if (numplayer == 6){
-			numcards = 6;}
+			numberofcards = 6;}
 		else {
 			cout << "Error too less or too many players" << endl;
 			}
 			}
 
-	void Rummy::getCards(int card,int numplayer){
+	void Rummy::getCards(int numcard,int numplayer){
 		int i = 0;
 		srand(0);
 
