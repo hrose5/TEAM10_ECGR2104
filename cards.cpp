@@ -7,11 +7,11 @@ using namespace std;
 
 class Rummy {
 private:
-int numplayer;
-int numcards;
-int card;
-string suit;
-string cardset;
+int numplayer; //number of players
+int numcards; // the number the cards each play er gets
+int numcard; // the card number from 1-50
+string suit; // the suit like heart, spade, clover,etc...
+string cardset; 
 string cardname;
 
 public:
