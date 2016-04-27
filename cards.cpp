@@ -222,21 +222,21 @@ void CreateCardSet(string cardset, string suit, string cardname);
 
 		if (numplayer == 2){
 		for(i=0; i< 10; ++i){
-		numcard = rand()%50 + 1;
+		numcard = rand()%52 + 1;
 		cout << numcard << " ";
  		
 		}
 		}
 		else if ((numplayer == 3) || (numplayer == 4)){
 		for(i=0; i<7; ++i){
-		numcard = rand()%50 + 1;
+		numcard = rand()%52 + 1;
 		cout << numcard << " ";
 		}
 
 		}
 		else if ((numplayer == 5) || (numplayer == 6)){
 		for(i=0; i <6 ; ++i){
-		numcard = rand()%50 + 1;
+		numcard = rand()%52 + 1;
 		cout << numcard << " ";
 		
 		}
