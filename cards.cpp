@@ -20,7 +20,7 @@ public:
 // cpu function
 //storage function
 //hand function
-//leftover card function
+//leftover card (stock) function
 // discard function
 //meld function (holds melds possibilities)
 // meld pile (melds already utilized)
