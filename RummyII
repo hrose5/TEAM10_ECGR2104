@@ -335,10 +335,147 @@ state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
 	/* No player has won */
 	return false;
 	}
+	int evaluate(State state)
+	{
+	mergeSort(state.agentHand, 0, state.agentHand.size());
+	vector<int> hand = state.agentHand;
+	list<int> remaining = state.remaining;
+	int score = 0; // score of hand
+	int rank; // rank of card
+	int val; // stored value of card
+	
+	/* Check if hand is a winner */
+	if (isWinner(hand))
+	return 100;
+	
+	/* Check for 4 of a kind or 4 in a row */
+	for (int i = 0; i < hand.size() - 3; i++)
+	{
+	val = hand[i];
+	rank = val % 13;
+	/* Check for 4 of a kind */
+	int matchCount = 0;
+	for (int j = i + 1; j < hand.size(); j++)
+	{
+	if (rank == hand[j] % 13)
+	matchCount++;
+	}
+	if (matchCount == 3)
+	{
+	score += 15;
+	matchCount = 0;
+	}
+	
+	/* Check for 4 in a row */
+	if (val < 10 && val+1 == hand[i+1] && val+2 == hand[i+2]
+	&& val+3 == hand[i+3])
+	score += 15;
+	}
+	
+	/* Check for 3 of a kind or 3 in a row */
+	for (int i = 0; i < hand.size() - 2; i++)
+	{
+	val = hand[i];
+	rank = val % 13;
+	
+	/* Check for 3 of a kind */
+	int matchCount = 0;
+	for (int j = i + 1; j < hand.size(); j++)
+	{
+	if (rank == hand[j] % 13)
+	matchCount++;
+	}
+	if (matchCount == 2)
+	{
+	score += 9;
+	/* Check for 1 of the same kind in remaining cards */
+	for (list<int>::iterator it = remaining.begin();
+	it != remaining.end(); it++)
+	if (*it % 13 == rank)
+	score ++;
+	matchCount = 0;
+	} 
+	
+	/* Check for 3 in a row */
+	if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2])
+	{
+	score += 9;
+	/* Check for 1 before and 1 after in remaining cards */
+	for (list<int>::iterator it = remaining.begin();
+	it != remaining.end(); it++)
+	{
+	if (rank > 0 && *it == val - 1)
+	score++;
+	if (rank < 10 && *it == val + 3)
+	score++;
+	}
+	}
+	}
+	
+	/* Check for 2 of a kind or 2 in a row */
+	for (int i = 0; i < hand.size() - 1; i++)
+	{
+	val = hand[i];
+	rank = val % 13;
+	
+	/* Check for 2 of a kind */
+	int matchCount = 0;
+	for (int j = i + 1; j < hand.size(); j++)
+	{
+	if (rank == hand[j] % 13)
+	matchCount++;
+	}
+	if (matchCount == 1)
+	{
+	/* Check to see if any remain */
+	for (list<int>::iterator it = remaining.begin();
+	it != remaining.end(); it++)
+	if (*it % 13 == rank)
+	score++;
+	matchCount = 0;
+	}
+	
+	/* Check for 2 in a row */
+	if (rank < 12 && val+1 == hand[i+1])
+	{
+	/* Check for 1 or 2 before and 1 or 2 after in remaining cards */
+	for (list<int>::iterator it = remaining.begin();
+	it != remaining.end(); it++)
+	{
+	if (rank > 0 && *it == val - 1)
+	{
+	score++;
+	for (list<int>::iterator jt = remaining.begin();
+	jt != remaining.end(); jt++)
+	if (rank > 1 && *jt == val - 2)
+	score++;
+	}
+	if (rank < 11 && *it == val + 2)
+	{
+	score++;
+	for (list<int>::iterator jt = remaining.begin();
+	jt != remaining.end(); jt++)
+	if (rank < 10 && *jt == val + 3)
+	score++;
+	}
+	}
+	} 
+	}
+	
+	return score;
+	}
 
-
-
-
+	State initializeState()
+	{
+	State state;
+	state.deck = getNewDeck();
+	state.remaining = initializeRemaining();
+	dealCards(state.deck, state.userHand, state.agentHand);
+	adjustRemaining(state.remaining, state.agentHand);
+	mergeSort(state.userHand, 0, state.userHand.size());
+	state.turnCard = 52;
+	return state;
+	}
 
 int main(int argc, char **argv)
 {
