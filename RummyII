@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <cstdlib>
 #include <list>
 #include <ctime>
@@ -129,8 +129,8 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 	void printTurnCard(int v)
 	{
 		char suit = getSuit(v); //calls a function from another function , can't believe it works but i tried it :D
-		char rank = getRank(v); //calls a function from another function
-		cout << rank <<" " <<suit<<endl;}
+		char hold = getHold(v); //calls a function from another function
+		cout << hold <<" " <<suit<<endl;}
 	void meldsSorted(vector<int> &discard, int startInArray, int finishInArray){ /// sorts the vector of integers where the vector is in order
 		if ((finishInArray - startInArray) <= 1)
 			return;
@@ -158,7 +158,7 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 						return true; //checks last four in a row
 					if (hand[3] % 13 == hand[4] % 13 && hand[3] % 13 == hand[5] % 13
 						&& hand[3] % 13 == hand[6] % 13)
-						return true; //checks for same rank
+						return true; //checks for same hold
 						}}}
 	
 			vector<int> nonMatches;
@@ -323,7 +323,7 @@ bool gameOver(Rummy rummy)
 		vector<int> hand = rummy.agentHand;
 		list<int> remaining = rummy.remaining;
 		int score = 0; // score of hand
-		int rank; // rank of card
+		int hold; // hold of card
 		int val; // stored value of card
 		//Check if hand played makes the winner
 		if (isWinner(hand))
@@ -332,12 +332,12 @@ bool gameOver(Rummy rummy)
 			for (int i = 0; i < hand.size() - 3; i++)
 				{
 				val = hand[i];
-				rank = val % 13;
+				hold = val % 13;
 		//checks four cards being the same
 				int matchCount = 0;
 				for (int j = i + 1; j < hand.size(); j++)
 					{
-					if (rank == hand[j] % 13)
+					if (hold == hand[j] % 13)
 						matchCount++;
 					}
 					if (matchCount == 3)
@@ -355,35 +355,35 @@ bool gameOver(Rummy rummy)
 				for (int i = 0; i < hand.size() - 2; i++)
 					{
 					val = hand[i];
-					rank = val % 13;
+					hold = val % 13;
 	
 					//Check for 3 of same kind
 					int matchCount = 0;
 					for (int j = i + 1; j < hand.size(); j++)
 						{
-						if (rank == hand[j] % 13)
+						if (hold == hand[j] % 13)
 						matchCount++;
 						}
-					if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2])
+					if (hold < 11 && val+1 == hand[i+1] && val+2 == hand[i+2])
 					{
 						score += 9;
 /* Check for 1 of the same kind in remaining cards */
 					for (list<int>::iterator it = remaining.begin();
 							it != remaining.end(); it++)
-						if (*it % 13 == rank)
+						if (*it % 13 == hold)
 							score ++;
 					matchCount = 0;
 	} 
 	
 /* Check for 3 in a row */
-					if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2]){
+					if (hold < 11 && val+1 == hand[i+1] && val+2 == hand[i+2]){
 						score += 9;
 /* Check for 1 before and 1 after in remaining cards */
 						for (list<int>::iterator it = remaining.begin();
 								it != remaining.end(); it++){
-							if (rank > 0 && *it == val - 1)
+							if (hold > 0 && *it == val - 1)
 								score++;
-							if (rank < 10 && *it == val + 3)
+							if (hold < 10 && *it == val + 3)
 								score++;
 						}
 			}
@@ -407,32 +407,32 @@ bool gameOver(Rummy rummy)
 /* Check to see if any remain */
 		for (list<int>::iterator it = remaining.begin();
 				it != remaining.end(); it++)
-			if (*it % 13 == rank)
+			if (*it % 13 == hold)
 				score++;
 				matchCount = 0;
 	}
 	
 /* Check for 2 in a row */
-	if (rank < 12 && val+1 == hand[i+1])
+	if (hold < 12 && val+1 == hand[i+1])
 	{
 /* Check for 1 or 2 before and 1 or 2 after in remaining cards */
 		for (list<int>::iterator it = remaining.begin();
 				it != remaining.end(); it++)
 	{
-		if (rank > 0 && *it == val - 1)
+		if (hold > 0 && *it == val - 1)
 	{
 			score++;
 		for (list<int>::iterator jt = remaining.begin();
 				jt != remaining.end(); jt++)
-			if (rank > 1 && *jt == val - 2)
+			if (hold > 1 && *jt == val - 2)
 			score++;
 	}
-	if (rank < 11 && *it == val + 2)
+	if (hold < 11 && *it == val + 2)
 	{
 		score++;
 		for (list<int>::iterator jt = remaining.begin();
 			jt != remaining.end(); jt++)
-		if (rank < 10 && *jt == val + 3)
+		if (hold < 10 && *jt == val + 3)
 			score++;
 	}
 	}
@@ -456,5 +456,4 @@ printRummy(rummy);
 }
 return 0;
 }
-
 
