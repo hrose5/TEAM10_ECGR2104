@@ -5,6 +5,7 @@
 #include <vector>
 #include "rummy.h"
 using namespace std;
+//bool needs to be changed where it is not just 7 cards
 
 vector<int>newDeck(){ // creates the vector to hold all 52 cards
 	vector <int>deck;
@@ -131,42 +132,28 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 			vector<int> temp;
 			meldsSorted(integers, start, start+m, finish, temp);
 			int tempIndex = 0;
-				for (int i = start; i < finish; i++) //temporarily stores
+				for (int i = start; i < finish; i++){ //temporarily stores
 					integers[i] = temp[tempIndex++];
-						}
+						}}
 
-/*
-* Determines if the given hand is a winner.
-* Returns true if it is, returns false otherwise.
-*/
-bool isWinner(vector<int> hand)
-{
-mergeSort(hand, 0, hand.size()); // sort hand first
-
-/* Check if first 4 are in a row */
-if (hand[0] % 13 < 10 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2
-&& hand[3] == hand[0] + 3)
-{
-/* Check if last 3 are in a row */
-if (hand[4] % 13 < 11 && hand[5] == hand[4] + 1 && hand[6] == hand[4] + 1)
-return true;
-/* check if last 3 are the same rank */
-if (hand[4] % 13 == hand[5] % 13 && hand[4] % 13 == hand[6] % 13)
-return true;
-}
-
-/* Check if first 3 are in a row */
-if (hand[0] % 13 < 11 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2)
-{
-/* Check if last 4 are in a row */
-if (hand[3] % 13 < 10 && hand[4] == hand[3] + 1 && hand[5] == hand[3] + 2
-&& hand[6] == hand[3] + 3)
-return true;
-/* Check if last 4 are the same rank */
-if (hand[3] % 13 == hand[4] % 13 && hand[3] % 13 == hand[5] % 13
-&& hand[3] % 13 == hand[6] % 13)
-return true;
-}
+		bool isWinner(vector<int> hand) //true or false function tht determines a type of meld
+			{
+				mergeSort(hand, 0, hand.size()); // sort hand first
+				if (hand[0] % 13 < 10 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2 && hand[3] == hand[0] + 3){
+					{ return true;}  //checks for the first cards to be 4 in a row by numbers
+						if (hand[4] % 13 < 11 && hand[5] == hand[4] + 1 && hand[6] == hand[4] + 1){
+							return true;} //checks for the last three in a row by number
+						if (hand[4] % 13 == hand[5] % 13 && hand[4] % 13 == hand[6] % 13){
+							return true; // checks for the last three in a row by suit
+				if (hand[0] % 13 < 11 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2)
+					{ //checks if the first three in a row
+						if (hand[3] % 13 < 10 && hand[4] == hand[3] + 1 && hand[5] == hand[3] + 2 && hand[6] == hand[3] + 3)
+							return true; //checks last four in a row
+						if (hand[3] % 13 == hand[4] % 13 && hand[3] % 13 == hand[5] % 13
+							&& hand[3] % 13 == hand[6] % 13)
+								return true; //checks for same rank
+									}}}}
+	
 	vector<int> nonMatches;
 	for (int i = 0; i < hand.size(); i++)
 	{
