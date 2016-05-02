@@ -201,51 +201,51 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 				while (choice != 'p' && (choice != 's' || state.turnCard == 52))
 					{
 					if (state.turnCard < 52)
-cout << "Enter \"s\" to take the card." << endl;
-cout << "Enter \"p\" to pick up a new card from the deck." << endl;
-cin >> choice;
-}
-/* handle user wants the turn card */
-if (choice == 't')
-state.userHand.push_back(state.turnCard);
-/* handle user wants to draw a new card from the deck */
-else
-{
-state.userHand.push_back(state.deck.back());
-state.deck.pop_back();
-}
-printHand(state.userHand);
+						cout << "Enter \"s\" to take the card." << endl;
+						cout << "Enter \"p\" to pick up a new card from the deck." << endl;
+						cin >> choice;
+						}
+					//handle user wants the turn card 
+						if (choice == 't')
+							state.userHand.push_back(state.turnCard);
+							//wants new card
+						else
+							{
+							state.userHand.push_back(state.deck.back());
+							state.deck.pop_back();
+							}
+							printHand(state.userHand);
 
-/* Give user options for tossing */
-cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
-cout << endl;
-cin >> choice;
-while (choice != 't' && choice != 'r')
-{
-cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
-cout << endl;
-cin >> choice;
-}
-while (choice != 't')
-{
-/* Handle user wants to rearrange hand */
-if (choice == 'r')
-{
-char pos1, pos2;
-cout << "Enter the position of first card to swap [1-8]." << endl;
-cin >> pos1;
-while (pos1 < '1' || pos1 > '8')
-{
-cout << "Enter which card you would like to swap first [1-8]." << endl;
-cin >> pos1;
-}
-cout << "Enter which card you would like to swap the first card with [1-8]." << endl;
-cin >> pos2;
-while (pos2 < '1' || pos2 > '8')
-{
-cout << "Enter whcih card you would like to swap the first card with [1-8]." << endl;
-cin >> pos2;
-}
+						//allows u to toss or resort your hand
+						cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
+						cout << endl;
+						cin >> choice;
+						while (choice != 't' && choice != 'r')
+							{
+							cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
+							cout << endl;
+							cin >> choice;
+							}
+						while (choice != 't')
+							{
+							//rearrangge acrds
+							if (choice == 'r')
+								{
+								char pos1, pos2;
+								cout << "Enter the position of first card to swap [1-8]." << endl;
+								cin >> pos1;
+								while (pos1 < '1' || pos1 > '8')
+									{
+									cout << "Enter which card you would like to swap first [1-8]." << endl;
+									cin >> pos1;
+									}
+							cout << "Enter which card you would like to swap the first card with [1-8]." << endl;
+							cin >> pos2;
+							while (pos2 < '1' || pos2 > '8')
+								{
+								cout << "Enter whcih card you would like to swap the first card with [1-8]." << endl;
+								cin >> pos2;
+								}
 /* swap cards */
 swap(state.userHand, pos1-49, pos2-49); // subtract 48 for ASCII, subtract 1 more for 0 indexing
 	printHand(state.userHand); // print user's hand
