@@ -190,17 +190,17 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 				return true;
 				}}
 	
-void playUserTurn(State &state)
-{
-/* Give user options for drawing */
-if (state.turnCard < 52)
-cout << "Enter \"t\" to take the turn card." << endl;
-cout << "Enter \"d\" to draw a card from the deck." << endl;
-char choice;
-cin >> choice;
-while (choice != 'd' && (choice != 't' || state.turnCard == 52))
-{
-if (state.turnCard < 52)
+	void playUserTurn(State &state)
+		{
+		//gives the ability to draw a card
+		if (state.turnCard < 52)
+			cout << "Enter \"t\" to take the turn card." << endl;
+			cout << "Enter \"d\" to draw a card from the deck." << endl;
+			char choice;
+			cin >> choice;
+				while (choice != 'd' && (choice != 't' || state.turnCard == 52))
+					{
+					if (state.turnCard < 52)
 cout << "Enter \"t\" to take the turn card." << endl;
 cout << "Enter \"d\" to draw a card from the deck." << endl;
 cin >> choice;
