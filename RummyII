@@ -74,22 +74,25 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 			else if ((k == 6 && i == 1) || (k == 1 && i == 8) || (k == 4 && i == 5)) //prints the suit
 				cout << suit;
 			else
-				cout << " ";}}
-				cout << endl;}
+				cout << " ";
+				}}
 				cout << endl;
 				}
+				cout << endl;
 				}
-				}
-
-
-	List<int> Remaining(){ // list created to hold unused cards
-			list<int> remaining;
-			for (int i = 0; i < 52; i++){
-				remaining.push_back(i);
-				return remaining;
-					}
+			
+		
 	
-	void shuffle(vector<int> &deck){ // Loop that goes through and loops a change in cards randomly by ctime
+
+
+List<int> Remaining(){ // list created to hold unused cards
+		list<int> remaining;
+		for (int i = 0; i < 52; i++){
+			remaining.push_back(i);
+			return remaining;
+					}
+	}
+void shuffle(vector<int> &deck){ // Loop that goes through and loops a change in cards randomly by ctime
 		srand(time(NULL));
 		int length = deck.size();
 			for (int i = size-1; i >0; i--)
@@ -98,7 +101,7 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 				swap(deck, i, pos);
 					}}
 					
-	void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
+void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 		{
 			int temp = card[pos1]; // temp is used to temporarily swap and hold cards
 			card[pos1] = card[pos2];
@@ -115,7 +118,8 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 						user.push_back(topCard); //deals a card to the user
 					else
 						CPUS.push_back(topCard);}} //deals a card to the CPU
-	
+	}
+	}
 	
 	void fixRemainderCards(list<int> &remaining, vector<int> hand) // takes card used from the remaining deck
 	{
