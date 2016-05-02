@@ -272,11 +272,11 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 									cout << endl;
 									cin >> pos;
 									}
-state.turnCard = state.userHand[pos-49]; // set turn card
-state.remaining.remove(state.turnCard); // remove from remaining cards
-state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
-}
-}
+			state.turnCard = state.userHand[pos-49]; // set turn card
+			state.remaining.remove(state.turnCard); // remove from remaining cards
+			state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
+				}
+				}
 	void merge(vector<int> integers, int a1, int m, int b2, vector<int> &output)
 	{
 	int a2, b1;
