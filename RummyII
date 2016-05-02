@@ -190,31 +190,31 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 				return true;
 				}}
 	
-	void playUserTurn(State &state)
+	void playUserTurn(Rummy &rummy)
 		{
 		//gives the ability to draw a card
-		if (state.turnCard < 52)
+		if (rummy.turnCard < 52)
 			cout << "Enter \"s\" to take the card." << endl;
 			cout << "Enter \"p\" to pick up a new card from the deck." << endl;
 			char choice;
 			cin >> choice;
-				while (choice != 'p' && (choice != 's' || state.turnCard == 52))
+				while (choice != 'p' && (choice != 's' || rummy.turnCard == 52))
 					{
-					if (state.turnCard < 52)
+					if (rummy.turnCard < 52)
 						cout << "Enter \"s\" to take the card." << endl;
 						cout << "Enter \"p\" to pick up a new card from the deck." << endl;
 						cin >> choice;
 						}
 					//handle user wants the turn card 
 						if (choice == 't')
-							state.userHand.push_back(state.turnCard);
+							rummy.userHand.push_back(rummy.turnCard);
 							//wants new card
 						else
 							{
-							state.userHand.push_back(state.deck.back());
-							state.deck.pop_back();
+							rummy.userHand.push_back(rummy.deck.back());
+							rummy.deck.pop_back();
 							}
-							printHand(state.userHand);
+							printHand(rummy.userHand);
 
 						//allows u to toss or resort your hand
 						cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
@@ -247,8 +247,8 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 								cin >> pos2;
 								}
 			//card swap
-			swap(state.userHand, pos1-49, pos2-49); // subtract 48 for ASCII, subtract 1 more for 0 indexing
-			printHand(state.userHand); // print user's hand
+			swap(rummy.userHand, pos1-49, pos2-49); // subtract 48 for ASCII, subtract 1 more for 0 indexing
+			printHand(rummy.userHand); // print user's hand
 			}
 			// give option to rearrange or toss after the swap
 			cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
@@ -274,9 +274,9 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 					cout << endl;
 					cin >> pos;
 					}
-			state.turnCard = state.userHand[pos-49]; // set turn card
-			state.remaining.remove(state.turnCard); // remove from remaining cards
-			state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
+			rummy.turnCard = rummy.userHand[pos-49]; // set turn card
+			rummy.remaining.remove(rummy.turnCard); // remove from remaining cards
+			rummy.userHand.erase(rummy.userHand.begin()+pos-49); // remove from user hand
 			}
 	}
 void merge(vector<int> discard, int a1, int m, int b2, vector<int> &output)
@@ -296,20 +296,20 @@ void merge(vector<int> discard, int a1, int m, int b2, vector<int> &output)
 		while (b1 < b2)
 			output.push_back(discard[b1++]);
 			}
-bool gameOver(State state)
+bool gameOver(Rummy rummy)
 	{
 	//check if user has won
-	if (isWinner(state.userHand))
+	if (isWinner(rummy.userHand))
 	{
 		cout << "You won the game!" << endl;
-		printHand(state.userHand);
+		printHand(rummy.userHand);
 		return true;
 	}
 	//Check if CPU is winner
-	if (isWinner(state.agentHand))
+	if (isWinner(rummy.agentHand))
 		{
 		cout << "Read 'em and weep!" << endl;
-		printHand(state.agentHand);
+		printHand(rummy.agentHand);
 		cout << "You lost the game :(" << endl;
 		return true;
 		}
@@ -317,11 +317,11 @@ bool gameOver(State state)
 		return false;
 		}
 		
-	int evaluate(State state)
+	int evaluate(Rummy rummy)
 		{
-		mergeSort(state.agentHand, 0, state.agentHand.size());
-		vector<int> hand = state.agentHand;
-		list<int> remaining = state.remaining;
+		mergeSort(rummy.agentHand, 0, rummy.agentHand.size());
+		vector<int> hand = rummy.agentHand;
+		list<int> remaining = rummy.remaining;
 		int score = 0; // score of hand
 		int rank; // rank of card
 		int val; // stored value of card
@@ -367,75 +367,73 @@ bool gameOver(State state)
 					if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2])
 					{
 						score += 9;
-	/* Check for 1 of the same kind in remaining cards */
-	for (list<int>::iterator it = remaining.begin();
-	it != remaining.end(); it++)
-	if (*it % 13 == rank)
-	score ++;
-	matchCount = 0;
+/* Check for 1 of the same kind in remaining cards */
+					for (list<int>::iterator it = remaining.begin();
+							it != remaining.end(); it++)
+						if (*it % 13 == rank)
+							score ++;
+					matchCount = 0;
 	} 
 	
-	/* Check for 3 in a row */
-	if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2])
-	{
-	score += 9;
-	/* Check for 1 before and 1 after in remaining cards */
-	for (list<int>::iterator it = remaining.begin();
-	it != remaining.end(); it++)
-	{
-	if (rank > 0 && *it == val - 1)
-	score++;
-	if (rank < 10 && *it == val + 3)
-	score++;
-	}
-	}
+/* Check for 3 in a row */
+					if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2]){
+						score += 9;
+/* Check for 1 before and 1 after in remaining cards */
+						for (list<int>::iterator it = remaining.begin();
+								it != remaining.end(); it++){
+							if (rank > 0 && *it == val - 1)
+								score++;
+							if (rank < 10 && *it == val + 3)
+								score++;
+						}
+			}
 	}
 	
-	/* Check for 2 of a kind or 2 in a row */
+/* Check for 2 of a kind or 2 in a row */
 	for (int i = 0; i < hand.size() - 1; i++)
 	{
-	val = hand[i];
-	rank = val % 13;
+		val = hand[i];
+		hold = val % 13;
 	
-	/* Check for 2 of a kind */
-	int matchCount = 0;
-	for (int j = i + 1; j < hand.size(); j++)
+		/* Check for 2 of a kind */
+		int matchCount = 0;
+		for (int j = i + 1; j < hand.size(); j++)
 	{
-	if (rank == hand[j] % 13)
-	matchCount++;
+	if (hold == hand[j] % 13)
+		matchCount++;
 	}
 	if (matchCount == 1)
 	{
-	/* Check to see if any remain */
-	for (list<int>::iterator it = remaining.begin();
-	it != remaining.end(); it++)
-	if (*it % 13 == rank)
-	score++;
-	matchCount = 0;
+/* Check to see if any remain */
+		for (list<int>::iterator it = remaining.begin();
+				it != remaining.end(); it++)
+			if (*it % 13 == rank)
+				score++;
+				matchCount = 0;
 	}
 	
-	/* Check for 2 in a row */
+/* Check for 2 in a row */
 	if (rank < 12 && val+1 == hand[i+1])
 	{
-	/* Check for 1 or 2 before and 1 or 2 after in remaining cards */
-	for (list<int>::iterator it = remaining.begin();
-	it != remaining.end(); it++)
+/* Check for 1 or 2 before and 1 or 2 after in remaining cards */
+		for (list<int>::iterator it = remaining.begin();
+				it != remaining.end(); it++)
 	{
-	if (rank > 0 && *it == val - 1)
+		if (rank > 0 && *it == val - 1)
 	{
-	score++;
-	for (list<int>::iterator jt = remaining.begin();
-	jt != remaining.end(); jt++)
-	if (rank > 1 && *jt == val - 2)
-	score++;
+			score++;
+		for (list<int>::iterator jt = remaining.begin();
+				jt != remaining.end(); jt++)
+			if (rank > 1 && *jt == val - 2)
+			score++;
 	}
 	if (rank < 11 && *it == val + 2)
 	{
-	score++;
-	for (list<int>::iterator jt = remaining.begin();
-	jt != remaining.end(); jt++)
-	if (rank < 10 && *jt == val + 3)
-	score++;
+		score++;
+		for (list<int>::iterator jt = remaining.begin();
+			jt != remaining.end(); jt++)
+		if (rank < 10 && *jt == val + 3)
+			score++;
 	}
 	}
 	} 
@@ -446,15 +444,15 @@ bool gameOver(State state)
 
 int main(int argc, char **argv)
 {
-State state = initializeState();
-printState(state);
-while (gameOver(state) == false)
+Rummy rummy = initializeRummy();
+printRummy(rummy);
+while (gameOver(rummy) == false)
 {
-playUserTurn(state);
-if (gameOver(state))
+playUserTurn(rummy);
+if (gameOver(rummy))
 break;
-playAgentTurn(state);
-printState(state);
+playAgentTurn(rummy);
+printRummy(rummy);
 }
 return 0;
 }
