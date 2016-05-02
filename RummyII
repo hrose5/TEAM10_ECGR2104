@@ -6,6 +6,8 @@
 #include "rummy.h"
 using namespace std;
 //bool needs to be changed where it is not just 7 cards
+// needs a class
+
 
 vector<int>newDeck(){ // creates the vector to hold all 52 cards
 	vector <int>deck;
