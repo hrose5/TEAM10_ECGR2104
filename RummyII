@@ -6,93 +6,85 @@
 #include "rummy.h"
 using namespace std;
 
-vector<int>newDeck(){
-vector <int>deck;
-for (int i = 0; i <52; ++i){
-deck.pushback(i);
-}
-shuffle(deck);
-return deck;
-}
+vector<int>newDeck(){ // creates the vector to hold all 52 cards
+	vector <int>deck;
+	for (int i = 0; i <52; ++i){
+		deck.pushback(i);
+		}
+	shuffle(deck);
+	return deck;
+	}
 
-char getSuit(int i) {
-if (i<13){
-return 'S';
-}
-else if (i<26) {
-return 'C';
-}
-else if (i<39){
-return 'H';
-}
-else
-return 'D';
-}
+char getSuit(int i) { // Determines the suit 
+		if (i<13){
+			return 'S';} //S = Spades
+		else if (i<26) {
+			return 'C';} //C = Clover
+		else if (i<39){
+			return 'H';}  //H = Hearts
+		else
+			return 'D';}} // D = Diamonds
 
-char getCardNumber (int i ) {
-int remainder = i% 13;
-if(hold==0)
-return 'A';
-if(hold == 1)
-return '2';
-if(hold == 2 )
-return '3';
-if(hold == 3 )
-return '4';
-if(hold == 4 )
-return '5';
-if(hold == 5 )
-return '6';
-if(hold == 6 )
-return '7';
-if(hold == 7 )
-return '8';
-if(hold == 8 )
-return '9';
-if(hold == 9 )
-return '10';
-if(hold == 10)
-return 'J';
-if(hold == 11)
-return 'Q';
-if(hold == 12)
-return 'K';
-}
-void PrintYourDeck(vector<int>hand) {
-	int size = hand.size();
+char getCardNumber (int i ) { //Converts I into the actual number on the card
+	int remainder = i% 13;
+		if(hold==0)
+			return 'A';
+		if(hold == 1)
+			return '2';
+		if(hold == 2 )
+			return '3';
+		if(hold == 3 )
+			return '4';
+		if(hold == 4 )
+			return '5';
+		if(hold == 5 )
+			return '6';
+		if(hold == 6 )
+			return '7';
+		if(hold == 7 )
+			return '8';
+		if(hold == 8 )
+			return '9';
+		if(hold == 9 )
+			return '10';
+		if(hold == 10)
+			return 'J';
+		if(hold == 11)
+			return 'Q';
+		if(hold == 12)
+			return 'K';
+			}}
+
+
+void PrintYourDeck(vector<int>hand) { //Prints your deck to show
+	int length = hand.size();
 	for (int i = 0; i < 10; i++)
 	{
 	for (int j = 0; j < size; j++)
 	{
-char rank = getCardNumber((hand[j]));
-char suit = getSuit((hand[j]));
-for (int k = 0; k < 8; k++)
-{
-if (k == 7)
-cout << "* ";
-else if (i == 0 || i == 9 || k == 0)
-cout << "*";
-else if ((k == 1 && i == 1) || (k == 6 && i == 8) || (k == 3 && i == 4))
-cout << hold;
-else if ((k == 6 && i == 1) || (k == 1 && i == 8) || (k == 4 && i == 5))
-cout << suit;
-else
-cout << " ";
-}
-}
-cout << endl;
-}
-cout << endl;
-}
-	list<int> initializeRemaining()
-	{
-	list<int> remaining;
-	for (int i = 0; i < 52; i++)
-	remaining.push_back(i);
-	return remaining;
-	}
-void shuffle(vector<int> &deck)
-{
+		char hold = getCardNumber((hand[j]));
+		char suit = getSuit((hand[j]));
+			for (int k = 0; k < 8; k++)
+				{
+			if ((k == 1 && i == 1) || (k == 6 && i == 8) || (k == 3 && i == 4)) //prints the number card
+				cout << hold; 
+			else if ((k == 6 && i == 1) || (k == 1 && i == 8) || (k == 4 && i == 5)) //prints the suit
+				cout << suit;
+			else
+				cout << " ";}}
+				cout << endl;}
+				cout << endl;
+				}
+
+
+		list<int> initializeRemaining(){ // list created to hold unused cards
+			list<int> remaining;
+			for (int i = 0; i < 52; i++){
+				remaining.push_back(i);
+				return remaining;
+					}
+	
+void shuffle(vector<int> &deck){
 srand(time(NULL));
 int size = deck.size();
 for (int i = size-1; i >0; i--)
