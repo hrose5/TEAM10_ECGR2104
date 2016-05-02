@@ -313,5 +313,46 @@ state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
 	while (b1 < b2)
 	output.push_back(integers[b1++]);
 	}
+		bool gameOver(State state)
+	{
+	/* Check if user won */
+	if (isWinner(state.userHand))
+	{
+	cout << "You won the game!" << endl;
+	printHand(state.userHand);
+	return true;
+	}
+	
+	/* Check if agent won */
+	if (isWinner(state.agentHand))
+	{
+	cout << "Read 'em and weep!" << endl;
+	printHand(state.agentHand);
+	cout << "You lost the game :(" << endl;
+	return true;
+	}
+	
+	/* No player has won */
+	return false;
+	}
+
+
+
+
+
+int main(int argc, char **argv)
+{
+State state = initializeState();
+printState(state);
+while (gameOver(state) == false)
+{
+playUserTurn(state);
+if (gameOver(state))
+break;
+playAgentTurn(state);
+printState(state);
+}
+return 0;
+}
 
 
