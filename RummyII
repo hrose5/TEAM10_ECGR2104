@@ -122,20 +122,18 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 		char suit = getSuit(v); //calls a function from another function , can't believe it works but i tried it :D
 		char rank = getRank(v); //calls a function from another function
 		cout << rank <<" " <<suit<<endl;}
-void mergeSort(vector<int> &integers, int start, int finish)
-{
-if ((finish - start) <= 1)
-return;
-int m = (finish - start) / 2;
-mergeSort(integers, start, start+m);
-mergeSort(integers, start+m, finish);
-
-vector<int> temp;
-merge(integers, start, start+m, finish, temp);
-int tempIndex = 0;
-for (int i = start; i < finish; i++)
-integers[i] = temp[tempIndex++];
-}
+	void meldsSorted(vector<int> &integers, int startInArray, int finishInArray){ /// sorts the vector of integers where the vector is in order
+		if ((finishInArray - startInArray) <= 1)
+			return;
+			int m = (finish - start) / 2;
+			meldsSorted(integers, startInArray, startInArray+m); //calls on itself in the void and sorts it by smallest to biggest
+			meldsSorted(integers, startInArray+m, finishInArray); //calls on itself in the void and sorts it by biggest to littlest
+			vector<int> temp;
+			meldsSorted(integers, start, start+m, finish, temp);
+			int tempIndex = 0;
+				for (int i = start; i < finish; i++) //temporarily stores
+					integers[i] = temp[tempIndex++];
+						}
 
 /*
 * Determines if the given hand is a winner.
