@@ -29,7 +29,7 @@ char getSuit(int i) { // Determines the suit
 			return 'D';}} // D = Diamonds
 
 char getCardNumber (int i ) { //Converts I into the actual number on the card
-	int remainder = i% 13;
+	int hold = i% 13;
 		if(hold==0)
 			return 'A';
 		if(hold == 1)
