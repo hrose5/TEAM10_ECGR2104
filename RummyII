@@ -143,55 +143,54 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 				for (int i = start; i < finish; i++){ //temporarily stores
 					integers[i] = temp[tempIndex++];
 						}}
-
-		bool isWinner(vector<int> hand) //true or false function tht determines a type of meld
-			{
-				mergeSort(hand, 0, hand.size()); // sort hand first
-				if (hand[0] % 13 < 10 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2 && hand[3] == hand[0] + 3){
-					{ return true;}  //checks for the first cards to be 4 in a row by numbers
-						if (hand[4] % 13 < 11 && hand[5] == hand[4] + 1 && hand[6] == hand[4] + 1){
-							return true;} //checks for the last three in a row by number
-						if (hand[4] % 13 == hand[5] % 13 && hand[4] % 13 == hand[6] % 13){
-							return true; // checks for the last three in a row by suit
-				if (hand[0] % 13 < 11 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2)
-					{ //checks if the first three in a row
-						if (hand[3] % 13 < 10 && hand[4] == hand[3] + 1 && hand[5] == hand[3] + 2 && hand[6] == hand[3] + 3)
-							return true; //checks last four in a row
-						if (hand[3] % 13 == hand[4] % 13 && hand[3] % 13 == hand[5] % 13
-							&& hand[3] % 13 == hand[6] % 13)
-								return true; //checks for same rank
-									}}}}
+	bool isWinner(vector<int> hand) //true or false function tht determines a type of meld
+		{
+			mergeSort(hand, 0, hand.size()); // sort hand first
+			if (hand[0] % 13 < 10 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2 && hand[3] == hand[0] + 3){
+				{ return true;}  //checks for the first cards to be 4 in a row by numbers
+					if (hand[4] % 13 < 11 && hand[5] == hand[4] + 1 && hand[6] == hand[4] + 1){
+						return true;} //checks for the last three in a row by number
+					if (hand[4] % 13 == hand[5] % 13 && hand[4] % 13 == hand[6] % 13){
+						return true; // checks for the last three in a row by suit
+			if (hand[0] % 13 < 11 && hand[1] == hand[0] + 1 && hand[2] == hand[0] + 2)
+				{ //checks if the first three in a row
+					if (hand[3] % 13 < 10 && hand[4] == hand[3] + 1 && hand[5] == hand[3] + 2 && hand[6] == hand[3] + 3)
+						return true; //checks last four in a row
+					if (hand[3] % 13 == hand[4] % 13 && hand[3] % 13 == hand[5] % 13
+						&& hand[3] % 13 == hand[6] % 13)
+						return true; //checks for same rank
+						}}}}
 	
-	vector<int> nonMatches;
-	for (int i = 0; i < hand.size(); i++)
-	{
-	if (hand[i] % 13 != hand[0] % 13)
-	nonMatches.push_back(hand[i]);
-	}
+			vector<int> nonMatches;
+				for (int i = 0; i < hand.size(); i++)
+					{
+					if (hand[i] % 13 != hand[0] % 13)
+						nonMatches.push_back(hand[i]);
+						}
+		
+	//Check for how any nonmatches we have out of 3 or 4
+			if (nonMatches.size() != 3 && nonMatches.size() != 4)
+				return false;
 	
-	/* Check for a legitimate number of nonmatches (3 or 4) */
-	if (nonMatches.size() != 3 && nonMatches.size() != 4)
-	return false;
+	// Check if nonmatches are not in a row for the same numbers
+			bool areInARow = true;
+				for (int i = 0; i < nonMatches.size(); i++)
+					{
+					if (nonMatches[i] != nonMatches[0] + i)
+						areInARow = false;
+					}
+				if (areInARow) //checks the function and lets known if they are ina row
+					return true;
+	// Check if nonmatches are not the same card
+			for (int i = 0; i < nonMatches.size(); i++)
+				{
+				if (nonMatches[i] % 13 != nonMatches[0] % 13)
+					return false;
+				}
+				return true;
+				}
 	
-	/* Check if nonmatches are not in a row */
-	bool areInARow = true;
-	for (int i = 0; i < nonMatches.size(); i++)
-	{
-	if (nonMatches[i] != nonMatches[0] + i)
-	areInARow = false;
-	}
-	if (areInARow)
-	return true;
-	
-	/* Check if nonmatches are not the same */
-	for (int i = 0; i < nonMatches.size(); i++)
-	{
-	if (nonMatches[i] % 13 != nonMatches[0] % 13)
-	return false;
-	}
-	return true;
-	}
-	void playUserTurn(State &state)
+void playUserTurn(State &state)
 {
 /* Give user options for drawing */
 if (state.turnCard < 52)
