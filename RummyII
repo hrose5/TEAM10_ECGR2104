@@ -281,6 +281,7 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 	}
 void merge(vector<int> discard, int a1, int m, int b2, vector<int> &output)
 	{
+	// takes cards from discard and unused cards and combines them
 	int a2, b1;
 	a2 = b1 = m;
 	while (a1 < a2 && b1 < b2)
