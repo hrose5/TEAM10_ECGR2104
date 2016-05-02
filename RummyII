@@ -77,52 +77,51 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 				}
 
 
-		list<int> initializeRemaining(){ // list created to hold unused cards
+	List<int> Remaining(){ // list created to hold unused cards
 			list<int> remaining;
 			for (int i = 0; i < 52; i++){
 				remaining.push_back(i);
 				return remaining;
 					}
 	
-void shuffle(vector<int> &deck){
-srand(time(NULL));
-int size = deck.size();
-for (int i = size-1; i >0; i--)
-{
-int Pos = rand() % i;
-swap(deck, i, Pos);
-}
-}
-void swap(vector<int> &cards, int pos1, int pos2)
-{
-int temp = cards[pos1];
-cards[pos1] = cards[pos2];
-cards[pos2] = temp;
-}
+	void shuffle(vector<int> &deck){ // Loop that goes through and loops a change in cards randomly by ctime
+		srand(time(NULL));
+		int length = deck.size();
+			for (int i = size-1; i >0; i--)
+				{
+				int pos = rand() % i;
+				swap(deck, i, pos);
+					}}
+					
+	void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
+		{
+			int temp = card[pos1]; // temp is used to temporarily swap and hold cards
+			card[pos1] = card[pos2];
+			card[pos2] = temp;
+			}
 
-	void dealCards(vector<int> &deck, vector<int> &userHand, vector<int> &agentHand)
+	void dealCards(vector<int> &deck, vector<int> &user, vector<int> &CPUS)
+		{ 
+			for (int i = 0; i < 14; i ++)
+				{
+				int topCard = deck.back();
+				deck.pop_back();
+					if (i%2 == 0)
+						user.push_back(topCard); //deals a card to the user
+					else
+						CPUS.push_back(topCard);}} //deals a card to the CPU
+	
+	
+	void fixRemainderCards(list<int> &remaining, vector<int> hand) // takes card used from the remaining deck
 	{
-	for (int i = 0; i < 14; i ++)
-	{
-	int topCard = deck.back();
-	deck.pop_back();
-	if (i%2 == 0)
-	userHand.push_back(topCard);
-	else
-	agentHand.push_back(topCard);
-	}
-	}
-	void adjustRemaining(list<int> &remaining, vector<int> hand)
-	{
-	for (int i = 0; i < hand.size(); i++)
-	remaining.remove(hand[i]);
-	}
+			for (int i = 0; i < hand.size(); i++)
+				remaining.remove(hand[i]);
+				}
 	void printTurnCard(int v)
 	{
-	char suit = getSuit(v);
-	char rank = getRank(v);
-	cout << rank;
-}
+		char suit = getSuit(v); //calls a function from another function , can't believe it works but i tried it :D
+		char rank = getRank(v); //calls a function from another function
+		cout << rank <<" " <<suit<<endl;}
 void mergeSort(vector<int> &integers, int start, int finish)
 {
 if ((finish - start) <= 1)
