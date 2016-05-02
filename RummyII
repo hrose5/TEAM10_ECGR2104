@@ -78,6 +78,8 @@ void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 				cout << endl;}
 				cout << endl;
 				}
+				}
+				}
 
 
 	List<int> Remaining(){ // list created to hold unused cards
