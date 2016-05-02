@@ -159,7 +159,7 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 					if (hand[3] % 13 == hand[4] % 13 && hand[3] % 13 == hand[5] % 13
 						&& hand[3] % 13 == hand[6] % 13)
 						return true; //checks for same rank
-						}}}}
+						}}}
 	
 			vector<int> nonMatches;
 				for (int i = 0; i < hand.size(); i++)
@@ -188,7 +188,7 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 					return false;
 				}
 				return true;
-				}
+				}}
 	
 void playUserTurn(State &state)
 {
