@@ -246,38 +246,38 @@ void swapcards(vector<int> &card, int pos1, int pos2) //swap cards
 								cout << "Enter whcih card you would like to swap the first card with [1-8]." << endl;
 								cin >> pos2;
 								}
-/* swap cards */
-swap(state.userHand, pos1-49, pos2-49); // subtract 48 for ASCII, subtract 1 more for 0 indexing
-	printHand(state.userHand); // print user's hand
-}
-/* After rearranging give the option of rearranging again or to toss */
-	cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
-	cout << endl;
-	cin >> choice;
-while (choice != 't' && choice != 'r')
-{
-cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
-cout << endl;
-cin >> choice;
-}
-}
-/* handle user wants to give back a card */
-if (choice == 't')
-{
-cout << "Enter the position of the card you would like to give back [1-8].";
-cout << endl;
-char pos;
-cin >> pos;
-while (pos < '1' || pos > '8')
-{
-cout << "Enter the position of the card you would like to give back [1-8].";
-cout << endl;
-cin >> pos;
-}
-state.turnCard = state.userHand[pos-49]; // set turn card
-state.remaining.remove(state.turnCard); // remove from remaining cards
-state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
-}
+			//card swap
+			swap(state.userHand, pos1-49, pos2-49); // subtract 48 for ASCII, subtract 1 more for 0 indexing
+			printHand(state.userHand); // print user's hand
+			}
+			// give option to rearrange or toss after the swap
+			cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
+			cout << endl;
+			cin >> choice;
+			while (choice != 't' && choice != 'r')
+				{
+				cout << "Enter \"t\" to toss a card or \"r\" to rearrange your hand.";
+				cout << endl;
+				cin >> choice;
+				}
+				}
+			//give card back
+			if (choice == 't')
+				{
+				cout << "Enter the position of the card you would like to give back [1-8].";
+				cout << endl;
+				char pos;
+				cin >> pos;
+				while (pos < '1' || pos > '8')
+					{
+					cout << "Enter the position of the card you would like to give back [1-8].";
+					cout << endl;
+					cin >> pos;
+					}
+			state.turnCard = state.userHand[pos-49]; // set turn card
+			state.remaining.remove(state.turnCard); // remove from remaining cards
+			state.userHand.erase(state.userHand.begin()+pos-49); // remove from user hand
+			}
 }
 	void merge(vector<int> discard, int a1, int m, int b2, vector<int> &output)
 	{
