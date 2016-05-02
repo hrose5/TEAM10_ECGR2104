@@ -316,60 +316,56 @@ bool gameOver(State state)
 		return false;
 		}
 		
-		
 	int evaluate(State state)
-	{
-	mergeSort(state.agentHand, 0, state.agentHand.size());
-	vector<int> hand = state.agentHand;
-	list<int> remaining = state.remaining;
-	int score = 0; // score of hand
-	int rank; // rank of card
-	int val; // stored value of card
+		{
+		mergeSort(state.agentHand, 0, state.agentHand.size());
+		vector<int> hand = state.agentHand;
+		list<int> remaining = state.remaining;
+		int score = 0; // score of hand
+		int rank; // rank of card
+		int val; // stored value of card
+		//Check if hand played makes the winner
+		if (isWinner(hand))
+			return 100;
+		//Check for 4 cards being a meld
+			for (int i = 0; i < hand.size() - 3; i++)
+				{
+				val = hand[i];
+				rank = val % 13;
+		//checks four cards being the same
+				int matchCount = 0;
+				for (int j = i + 1; j < hand.size(); j++)
+					{
+					if (rank == hand[j] % 13)
+						matchCount++;
+					}
+					if (matchCount == 3)
+						{
+						score += 15;
+						matchCount = 0;
+						}
 	
-	/* Check if hand is a winner */
-	if (isWinner(hand))
-	return 100;
+					//check 4 cards being in a numerical order
+					if (val < 10 && val+1 == hand[i+1] && val+2 == hand[i+2] && val+3 == hand[i+3])
+						score += 15;
+						}
 	
-	/* Check for 4 of a kind or 4 in a row */
-	for (int i = 0; i < hand.size() - 3; i++)
-	{
-	val = hand[i];
-	rank = val % 13;
-	/* Check for 4 of a kind */
-	int matchCount = 0;
-	for (int j = i + 1; j < hand.size(); j++)
-	{
-	if (rank == hand[j] % 13)
-	matchCount++;
-	}
-	if (matchCount == 3)
-	{
-	score += 15;
-	matchCount = 0;
-	}
+					//Check for 3 meld
+				for (int i = 0; i < hand.size() - 2; i++)
+					{
+					val = hand[i];
+					rank = val % 13;
 	
-	/* Check for 4 in a row */
-	if (val < 10 && val+1 == hand[i+1] && val+2 == hand[i+2]
-	&& val+3 == hand[i+3])
-	score += 15;
-	}
-	
-	/* Check for 3 of a kind or 3 in a row */
-	for (int i = 0; i < hand.size() - 2; i++)
-	{
-	val = hand[i];
-	rank = val % 13;
-	
-	/* Check for 3 of a kind */
-	int matchCount = 0;
-	for (int j = i + 1; j < hand.size(); j++)
-	{
-	if (rank == hand[j] % 13)
-	matchCount++;
-	}
-	if (matchCount == 2)
-	{
-	score += 9;
+					//Check for 3 of same kind
+					int matchCount = 0;
+					for (int j = i + 1; j < hand.size(); j++)
+						{
+						if (rank == hand[j] % 13)
+						matchCount++;
+						}
+					if (rank < 11 && val+1 == hand[i+1] && val+2 == hand[i+2])
+					{
+						score += 9;
 	/* Check for 1 of the same kind in remaining cards */
 	for (list<int>::iterator it = remaining.begin();
 	it != remaining.end(); it++)
@@ -445,18 +441,6 @@ bool gameOver(State state)
 	}
 	
 	return score;
-	}
-
-	State initializeState()
-	{
-	State state;
-	state.deck = getNewDeck();
-	state.remaining = initializeRemaining();
-	dealCards(state.deck, state.userHand, state.agentHand);
-	adjustRemaining(state.remaining, state.agentHand);
-	mergeSort(state.userHand, 0, state.userHand.size());
-	state.turnCard = 52;
-	return state;
 	}
 
 int main(int argc, char **argv)
