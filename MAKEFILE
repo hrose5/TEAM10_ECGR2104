@@ -1,8 +1,9 @@
-test:
-
-
-
-
+test: RummyII.o rummy.o
+    g++ RummyII.o rummy.o -o test
+RummyII.o : rummy.o
+g++ -c rummy.o
+rummy.o : RummyII.o
+g++ -c RummyII.o
 run:
     ./test
 clean:
