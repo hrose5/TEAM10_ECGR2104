@@ -1,1 +1,11 @@
+The objective is to simulate a card game called rummy for 2 players. A deck of 52 cards is shuffled initially and the game starts. The goal is to determine who wins the game.
 
+Card Game: Rummy 
+
+How to play: The object of the game is to get rid of your cards as you group them into �melds.� A meld is a set of three or four of a kind, or a �run� (three or more cards in order of the same suit, such as the three, four and five of hearts).
+
+The �dealer� shuffles the deck and deals the cards one at a time to each player as follows: Two players get 10 cards each; three or four players get seven cards each; five or six players get 6 cards each. The remaining cards are placed face down in the middle of the table and serve as the �stock� pile. The top card of the stock pile is turned face up and set next to the stock pile; this card begins the �discard� pile. Each player then groups all matching cards and runs together in their hand, which makes it easier to see the melds in their hand. Do not show the other players.
+
+The player to the left of the dealer plays first by taking the top card from either the stock pile or the discard pile. If the player has a meld, he will lay it down on the table so all cards in the meld are visible. Then he will discard another card from his hand by placing it face up in the discard pile. Players can also place a card down on any existing meld if they have a card that matches the meld or if they draw a card that matches the meld. For example, a player could lay a queen down onto an existing meld of three queens.
+
+The game continues clockwise around the table with players drawing a card from the stock or discard pile, making melds and laying down a card in the discard pile. The first player to get rid of their cards wins the round. Win the entire game by being the first to win five rounds.
