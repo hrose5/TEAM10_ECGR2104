@@ -6,7 +6,33 @@
 #include "rummy.h"
 using namespace std;
 //bool needs to be changed where it is not just 7 cards
-// needs a class
+/* needs a class
+class Rummy {
+private:
+int i;
+public:
+vector<int>deck;
+list<int> remaining;
+int turnCard;
+vector<int>newDeck();
+char getSuit(int i);
+char getCardNumber(int i);
+void PrintYourDeck(vector<int>hand);
+List<int> Remaining();
+void shuffle(vector<int> &deck);
+void swapCards(vector<int> &card, int pos1, int pos2);
+void dealCards(vector<int> &deck, vector<int> &user, vector<int> &CPUS);
+void printTurnCard(int v);
+void meldsSorted(vector<int> &discard, int startInArray, int finishInArray);
+bool isWinner(vector<int> hand)
+vector<int> nonMatches;
+void playUserTurn(Rummy &rummy)
+void merge(vector<int> discard, int a1, int m, int b2, vector<int> &output);
+bool gameOver(Rummy rummy)
+int evaluate(Rummy rummy)
+Rummy initializeRummy()
+};
+/*
 
 
 vector<int>newDeck(){ // creates the vector to hold all 52 cards
