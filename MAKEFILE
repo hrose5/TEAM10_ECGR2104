@@ -1,0 +1,9 @@
+test:
+
+
+
+
+run:
+    ./test
+clean:
+   rm -f test
