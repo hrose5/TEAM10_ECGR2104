@@ -11,6 +11,9 @@ class Rummy {
 private:
 int i;
 public:
+int getPlayer() {return numplayer;} 
+void getNumCards(int numplayer, int numberofcards); // just determines how many cards each player gets
+void setPlayers(int innumplayer) {numplayer = innumplayer;} 
 vector<int>deck;
 list<int> remaining;
 int turnCard;
@@ -18,7 +21,6 @@ vector<int>newDeck();
 char getSuit(int i);
 char getCardNumber(int i);
 void PrintYourDeck(vector<int>hand);
-List<int> Remaining();
 void shuffle(vector<int> &deck);
 void swapCards(vector<int> &card, int pos1, int pos2);
 void dealCards(vector<int> &deck, vector<int> &user, vector<int> &CPUS);
@@ -33,6 +35,22 @@ int evaluate(Rummy rummy)
 Rummy initializeRummy()
 };
 /*
+//determines how many players are playing
+void Rummy:: getNumCards(int numplayer, int numberofcards){
+		if (numplayer == 2){
+			numberofcards = 10;}
+		else if (numplayer == 3) {
+			numberofcards = 7;}
+		else if (numplayer == 4){
+			numberofcards = 7;}
+		else if (numplayer == 5){
+			numberofcards = 6;}
+		else if (numplayer == 6){
+			numberofcards = 6;}
+		else {
+			cout << "Error too less or too many players" << endl;
+			}
+			}
 
 
 vector<int>newDeck(){ // creates the vector to hold all 52 cards
@@ -87,7 +105,7 @@ char getCardNumber (int i ) { //Converts I into the actual number on the card
 
 void PrintYourDeck(vector<int>hand) { //Prints your deck to show
 	int length = hand.size();
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < numberofcards; i++)
 	{
 	for (int j = 0; j < size; j++)
 	{
